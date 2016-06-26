@@ -61,7 +61,7 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
-    host:      "%mailer_host%"
+    #host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
@@ -71,3 +71,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: UserBundle\Entity\User
+    registration:
+        confirmation:
+            enabled: true
+    from_email:
+        address:        tony.palaquer@gmail.com
+        sender_name:    BTChecker
