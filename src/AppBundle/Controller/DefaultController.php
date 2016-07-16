@@ -18,4 +18,21 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
+
+
+    public function aproposAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('a_propos/a_propos.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        ));
+    }
+
+    public function mentionsAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('mentions/mentions.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        ));
+    }        
 }
