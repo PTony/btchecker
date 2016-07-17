@@ -12,7 +12,7 @@ use Symfony\Component\Debug\Debug;
 // Feel free to remove this, extend it, or make something more sophisticated.
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-    || !(in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1')) || php_sapi_name() === 'cli-server')
+    || !(in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1')) || clientInSameSubnet($_SERVER['REMOTE_ADDR'], $_SERVER['SERVER_ADDR']) || php_sapi_name() === 'cli-server')
 ) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
@@ -30,3 +30,39 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+
+/**
+ * @param $clientIp - The IP of the client
+ * @param $serverIp - The IP of the server
+ * @return true|false
+ */
+function clientInSameSubnet($clientIp, $serverIp) {
+ 
+    // Extract broadcast and netmask from ifconfig
+    if (!($p = popen("/sbin/ifconfig","r")))
+        return false;
+ 
+    $out = "";
+    while(!feof($p)) {
+        $out .= fread($p, 1024);
+    }
+    pclose($p);
+ 
+    // This is because the php.net comment function does not
+    // allow long lines.
+ 
+    $match  = "/^.*".$serverIp.".*Bcast:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*Mask:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/im";
+ 
+    if (!preg_match($match, $out, $regs)) {
+        return false;
+    }
+ 
+    $broadcast = ip2long($regs[1]);
+    $subnetMask = ip2long($regs[2]);
+    $ipAddress = ip2long($clientIp);
+    $subnet = $broadcast & $subnetMask;
+ 
+    return (($ipAddress & $subnetMask) == ($subnet & $subnetMask));
+ 
+}
