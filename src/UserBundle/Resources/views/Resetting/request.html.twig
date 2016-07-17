@@ -1,5 +1,9 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
-
+{% block title %}{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}{% endblock %}
+{% block navbar %}{% endblock %}
+{% block content %}{% endblock %}
 {% block fos_user_content %}
+<div class="col-md-4 col-md-offset-4">
 {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+</div>
 {% endblock fos_user_content %}
