@@ -1,1 +1,16 @@
-s
+language: php
+
+php:
+  - 5.6
+  - 5.5
+  - 5.4
+
+before_script:
+  - composer self-update
+  - composer install
+
+script:
+  - phpunit
+ 
+notifications:
+  email: false
