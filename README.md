@@ -1,5 +1,7 @@
-btchecker [![Build Status - dev ](https://travis-ci.org/PTony/btchecker.svg?branch=dev)](https://travis-ci.org/PTony/btchecker)
+btchecker
 =========
+[![Build Status - master ](https://travis-ci.org/PTony/btchecker.svg?branch=master)](https://travis-ci.org/PTony/btchecker)
+[![Build Status - dev ](https://travis-ci.org/PTony/btchecker.svg?branch=dev)](https://travis-ci.org/PTony/btchecker)
 
 _A Symfony project created on June 26, 2016, 3:01 pm._
 
