@@ -1,4 +1,4 @@
-btchecker
+btchecker [![Build Status](https://travis-ci.org/PTony/btchecker.svg?branch=dev)](https://travis-ci.org/PTony/btchecker)
 =========
 
 _A Symfony project created on June 26, 2016, 3:01 pm._
