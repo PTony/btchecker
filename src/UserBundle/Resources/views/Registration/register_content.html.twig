@@ -12,6 +12,11 @@
 		{{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
 	</div>
 	<div class="form-group">
+		{{ form_label(form.dateOfBirth, "Date de naissance", { 'label_attr': { 'class': 'sr-only'  } }) }}
+		{{ form_errors(form.dateOfBirth) }}
+		{{ form_widget(form.dateOfBirth, { 'attr': {'class': 'form-control', 'placeholder': 'Date de naissance (dd/MM/yyyy)'|trans } }) }}
+	</div>
+	<div class="form-group">
 		{{ form_label(form.plainPassword.first, null, { 'label_attr': { 'class': 'sr-only'  } }) }}
 		{{ form_errors(form.plainPassword.first) }}
 		{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
