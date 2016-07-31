@@ -1,0 +1,4 @@
+app_image:
+    resource: "@AppBundle/Resources/config/routing/image.yml"
+    prefix:   /image
+

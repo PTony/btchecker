@@ -1,3 +1,7 @@
+homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -15,4 +19,8 @@ apropos:
 
 mentions:
     path:     /mentions
-    defaults: { _controller: AppBundle:Default:mentions }    
+    defaults: { _controller: AppBundle:Default:mentions }
+
+image:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /

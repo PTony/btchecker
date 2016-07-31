@@ -22,11 +22,12 @@ class Image
     private $id;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="imag_id", type="integer", unique=true)
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
-    private $imagId;
+    private $ownerId;
 
     /**
      * @var string
@@ -60,28 +61,6 @@ class Image
         return $this->id;
     }
 
-    /**
-     * Set imagId
-     *
-     * @param integer $imagId
-     * @return Image
-     */
-    public function setImagId($imagId)
-    {
-        $this->imagId = $imagId;
-
-        return $this;
-    }
-
-    /**
-     * Get imagId
-     *
-     * @return integer 
-     */
-    public function getImagId()
-    {
-        return $this->imagId;
-    }
 
     /**
      * Set path
@@ -95,6 +74,34 @@ class Image
 
         return $this;
     }
+
+/**********************************
+* ownerId
+*/
+    /**
+     * Get ownerId
+     *
+     * @return integer 
+     */
+    public function getOwnerId()
+    {
+        return $this->ownerId;
+    }
+
+    /**
+     * Set ownerId
+     *
+     * @param integer $ownerId
+     * @return Image
+     */
+    public function setOwnerId($ownerId)
+    {
+        $this->ownerId = $ownerId;
+
+        return $this;
+    }
+/*****************************************
+*/
 
     /**
      * Get path
