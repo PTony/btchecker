@@ -40,6 +40,17 @@ class ImageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $image->getPath();
+            if ($imageFile === null) {
+
+            } else {
+                $imageFilename = md5(uniqid()).'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('img_directory'),
+                    $imageFilename
+                );
+                $image->setPath($imageFilename);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
             $em->flush();

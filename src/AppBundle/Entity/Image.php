@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Image
@@ -32,6 +33,8 @@ class Image
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/pjpeg", "image/png" })
      * @ORM\Column(name="path", type="string", length=255, unique=true)
      */
     private $path;

@@ -1,6 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}{{ "Ajout d'une image"|trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Image creation</h1>
 
     {{ form_start(form) }}

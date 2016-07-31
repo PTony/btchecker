@@ -1,6 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}{{ "Image"|trans }} #{{ image.id }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Image</h1>
 
     <table>
@@ -10,8 +11,8 @@
                 <td>{{ image.id }}</td>
             </tr>
             <tr>
-                <th>Path</th>
-                <td>{{ image.path }}</td>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/img/' ~ image.path) }}"/></td>
             </tr>
             <tr>
                 <th>Uploadedat</th>
