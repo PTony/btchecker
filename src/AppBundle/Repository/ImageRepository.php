@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImageRepository extends EntityRepository
 {
+	public function myFind2Random($user)
+	{	
+
+		// First we get all Images ids not uploaded by the user (normally the logged user)
+		$queryBuilder = $this->_em->createQueryBuilder()
+		->select('i.id')
+		->from($this->_entityName, 'i')
+		->where('i.ownerId <> :userId')
+		->setParameter('userId', $user)
+		;
+		$query = $queryBuilder->getQuery();
+
+    	$listIds = $query->getResult();
+
+    	// Then we ask two random id from theses results
+        $randomKeys = array_rand($listIds, 2);
+        $firstId = $listIds[$randomKeys[0]]['id'];
+        $secondId = $listIds[$randomKeys[1]]['id']; 
+
+        // Next, we ask the data for theses 2 ids
+		$queryBuilder = $this->_em->createQueryBuilder()
+		->select('i')
+		->from($this->_entityName, 'i')
+		->where('i.id in (:firstId, :secondId)')
+		->setParameter('firstId', $firstId)
+		->setParameter('secondId', $secondId)
+		;
+		$query = $queryBuilder->getQuery();
+    	$results = $query->getResult();
+
+    	// Finally we return the data
+    	return $results;
+	}
+
 }

@@ -23,7 +23,7 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container {
-  padding: 60px 15px 0;
+  /*padding: 60px 15px 0;*/
 }
 .container .text-muted {
   margin: 0;
@@ -44,4 +44,26 @@ code {
 .need_account {
   margin-top: 30px;
   text-align: center;
+}
+
+/* Vote page */
+
+.first-img .thumbnail, .second-img .thumbnail {
+  /*background: aqua;*/
+  height: 390px;
+}
+
+.first-img img, .second-img img{
+  max-height: 300px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);  
+}
+
+.versus-big-text{
+  text-align: center;
+  /*background: yellow;*/
+  font-size: 5em;
+  font-weight: 900;
+  margin-top: 30vh;
 }

@@ -53,6 +53,26 @@ class Image
      */
     private $gender;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="participated_votes", type="integer")
+     */
+    private $participatedVotes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="won_votes", type="integer")
+     */
+    private $wonVotes;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="won_votes", type="float")
+     */
+    private $votesRatio;
 
     /**
      * Get id
@@ -161,4 +181,54 @@ class Image
     {
         return $this->gender;
     }
+
+/*****************************************/
+    /**
+     * Get participatedVotes
+     *
+     * @return integer 
+     */
+    public function getParticipatedVotes()
+    {
+        return $this->participatedVotes;
+    }
+
+    /**
+     * Set participatedVote
+     *
+     * @param integer $participatedVotes
+     * @return Image
+     */
+    public function setParticipatedVotes($participatedVotes)
+    {
+        $this->participatedVotes = $participatedVotes;
+
+        return $this;
+    }
+
+/****** ******/
+    /**
+     * Get wonVotes
+     *
+     * @return integer 
+     */
+    public function getWonVotes()
+    {
+        return $this->wonVotes;
+    }
+
+    /**
+     * Set wonVotes
+     *
+     * @param integer $wonVotes
+     * @return Image
+     */
+    public function setWonVotes($wonVotes)
+    {
+        $this->wonVotes = $wonVotes;
+
+        return $this;
+    }
+/*****************************************/
+
 }

@@ -30,6 +30,39 @@ class ImageController extends Controller
     }
 
     /**
+     * get 2 random images
+     *
+     */
+    public function twoRandomAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $images = $em->getRepository('AppBundle:Image');
+
+        $twoRandom = $images->myFind2Random($this->getUser()->getId());
+
+
+        return $this->render('image/vote.html.twig', array(
+            'images' => $twoRandom,
+        ));
+    }
+
+    /**
+     * Lists all my images
+     *
+     */
+    public function indexMineAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $images = $em->getRepository('AppBundle:Image')->findByOwnerId($this->getUser());
+
+        return $this->render('image/index.html.twig', array(
+            'images' => $images,
+        ));
+    }
+
+    /**
      * Creates a new Image entity.
      *
      */
@@ -40,6 +73,7 @@ class ImageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $imageFile = $image->getPath();
             if ($imageFile === null) {
 
@@ -51,6 +85,11 @@ class ImageController extends Controller
                 );
                 $image->setPath($imageFilename);
             }
+            // insertion de la sate
+            $image->setUploadedAt(new \Datetime());
+            $image->setOwnerId($this->getUser());
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
             $em->flush();
@@ -78,30 +117,30 @@ class ImageController extends Controller
         ));
     }
 
-    /**
-     * Displays a form to edit an existing Image entity.
-     *
-     */
-    public function editAction(Request $request, Image $image)
-    {
-        $deleteForm = $this->createDeleteForm($image);
-        $editForm = $this->createForm('AppBundle\Form\ImageType', $image);
-        $editForm->handleRequest($request);
+    // /**
+    //  * Displays a form to edit an existing Image entity.
+    //  *
+    //  */
+    // public function editAction(Request $request, Image $image)
+    // {
+    //     $deleteForm = $this->createDeleteForm($image);
+    //     $editForm = $this->createForm('AppBundle\Form\ImageType', $image);
+    //     $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($image);
-            $em->flush();
+    //     if ($editForm->isSubmitted() && $editForm->isValid()) {
+    //         $em = $this->getDoctrine()->getManager();
+    //         $em->persist($image);
+    //         $em->flush();
 
-            return $this->redirectToRoute('image_edit', array('id' => $image->getId()));
-        }
+    //         return $this->redirectToRoute('image_edit', array('id' => $image->getId()));
+    //     }
 
-        return $this->render('image/edit.html.twig', array(
-            'image' => $image,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+    //     return $this->render('image/edit.html.twig', array(
+    //         'image' => $image,
+    //         'edit_form' => $editForm->createView(),
+    //         'delete_form' => $deleteForm->createView(),
+    //     ));
+    // }
 
     /**
      * Deletes a Image entity.

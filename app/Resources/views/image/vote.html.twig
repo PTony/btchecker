@@ -1,0 +1,24 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}{{ "Images"|trans }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-5 col-xs-5 first-img">
+            <div class="thumbnail">
+                <img src="{{ asset('uploads/img/' ~ images[0].path) }}" alt="First image"/>
+            </div>
+            <div class="vote-btn">
+                <p><a href="#" class="btn btn-primary center-block" role="button">Voter pour</a></p>                    
+            </div>                
+        </div>
+        <div class="col-md-2 col-xs-2 versus-big-text"><span>VS</span></div>
+        <div class="col-md-5 col-xs-5 second-img">
+            <div class="thumbnail">
+                <img src="{{ asset('uploads/img/' ~ images[1].path) }}" alt="Second image"/>
+            </div>
+            <div class="vote-btn">
+                <p><a href="#" class="btn btn-primary center-block" role="button">Voter pour</a></p>                    
+            </div>
+        </div>        
+    </div>
+
+{% endblock %}

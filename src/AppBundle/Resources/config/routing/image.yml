@@ -3,6 +3,16 @@ image_index:
     defaults: { _controller: "AppBundle:Image:index" }
     methods:  GET
 
+image_two_random:
+    path:     /vote
+    defaults: { _controller: "AppBundle:Image:twoRandom" }
+    methods:  GET
+
+image_index_mine:
+    path:     /my
+    defaults: { _controller: "AppBundle:Image:indexMine" }
+    methods:  GET
+
 image_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:Image:show" }
@@ -13,10 +23,10 @@ image_new:
     defaults: { _controller: "AppBundle:Image:new" }
     methods:  [GET, POST]
 
-image_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "AppBundle:Image:edit" }
-    methods:  [GET, POST]
+# image_edit:
+#     path:     /{id}/edit
+#     defaults: { _controller: "AppBundle:Image:edit" }
+#     methods:  [GET, POST]
 
 image_delete:
     path:     /{id}/delete

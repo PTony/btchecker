@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var src = new XMLSerializer().serializeToString(document);
-	url = 'https://html5.validator.nu';
-	url = 'https://checker.html5.org';
+	// url = 'https://html5.validator.nu';
+	// url = 'https://checker.html5.org';
 	url = 'http://validator.w3.org/nu/';
 	
 	var blob = new Blob([src], { type: "text/html; charset=UTF-8", ending:"transparent"});

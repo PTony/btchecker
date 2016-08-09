@@ -18,9 +18,9 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('path', FileType::class, array('label' => 'Image', 'required' => true))
-            ->add('uploadedAt', 'datetime')
+            ->remove('uploadedAt', 'datetime')
             ->add('gender')
-            ->add('ownerId')
+            ->remove('ownerId')
         ;
     }
     
