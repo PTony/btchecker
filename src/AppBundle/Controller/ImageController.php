@@ -27,8 +27,16 @@ class ImageController extends Controller
 
         $images = $em->getRepository('AppBundle:Image')->findBy(array(), array('votesRatio'=>'DESC'));
 
+        $delete_forms = array_map(
+            function ($image) {
+                return $this->createDeleteForm($image)->createView();
+            }
+            , $images
+        );
+        dump($delete_forms);
         return $this->render('image/index_all.html.twig', array(
             'images' => $images,
+            'delete_forms' => $delete_forms
         ));
     }
 
