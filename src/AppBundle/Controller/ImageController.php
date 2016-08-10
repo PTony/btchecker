@@ -4,9 +4,12 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use AppBundle\Entity\Image;
 use AppBundle\Form\ImageType;
+
+
 
 /**
  * Image controller.
@@ -22,9 +25,9 @@ class ImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $images = $em->getRepository('AppBundle:Image')->findAll();
+        $images = $em->getRepository('AppBundle:Image')->findBy(array(), array('votesRatio'=>'DESC'));
 
-        return $this->render('image/index.html.twig', array(
+        return $this->render('image/index_all.html.twig', array(
             'images' => $images,
         ));
     }
@@ -46,6 +49,49 @@ class ImageController extends Controller
             'images' => $twoRandom,
         ));
     }
+
+    public function voteAction(Request $request) {
+        $winner = $request->request->get('winner');
+        $looser = $request->request->get('looser');
+
+        $em = $this->getDoctrine()->getManager();
+        $winImg = $em->getRepository('AppBundle:Image')->find($winner);
+        // dump($winImg);
+        $looseImg = $em->getRepository('AppBundle:Image')->find($looser);
+        // dump($looseImg);
+
+        if (!$winImg) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$winner
+            );
+        }
+        if (!$looseImg) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$looser
+            );
+        }
+
+        // We increment the count of participated votes for each images
+        $winImg->setParticipatedVotes($winImg->getParticipatedVotes()+1);
+        $looseImg->setParticipatedVotes($looseImg->getParticipatedVotes()+1);
+
+        // We increment counter of won votes for winning image
+        $winImg->setWonVotes($winImg->getWonVotes()+1);
+        
+        // We refresh the ratio for each images
+        $winImg->setVotesRatio($winImg->getWonVotes()/$winImg->getParticipatedVotes());
+        $looseImg->setVotesRatio($looseImg->getWonVotes()/$looseImg->getParticipatedVotes());
+
+        $em->persist($winImg);
+        $em->persist($looseImg);
+        $em->flush();
+        
+        $session = new Session();
+        $session->getFlashBag()->add('infos', 'A voté !');        
+        
+        return $this->redirectToRoute('image_two_random');
+    }
+
 
     /**
      * Lists all my images

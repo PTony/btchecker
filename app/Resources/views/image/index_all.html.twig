@@ -3,15 +3,16 @@
 
 
 {% block content %}
-    <h1>Mes images</h1>
+    <h1>Toutes les images</h1>
 
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Image</th>
-                <th>Date d'ajout</th>
-                <th>Genre</th>
+                <th>Uploader</th>
+                <th>Images</th>
+                <th>Upload date</th>
+                <th>Gender</th>
                 <th>Note</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
         {% for image in images %}
             <tr>
                 <td><a href="{{ path('image_show', { 'id': image.id }) }}">{{ image.id }}</a></td>
+                <td>{{ image.ownerId.username }}</td>
                 <td><img width="64" src="{{ asset('uploads/img/' ~ image.path) }}" alt="image_{{ loop.index }}"></td>
                 <td>{% if image.uploadedAt %}{{ image.uploadedAt|date('m/d/Y H:i:s') }}{% endif %}</td>
                 <td>{{ image.gender }}</td>

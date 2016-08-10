@@ -56,21 +56,21 @@ class Image
     /**
      * @var integer
      *
-     * @ORM\Column(name="participated_votes", type="integer")
+     * @ORM\Column(name="participated_votes", type="integer", nullable=true)
      */
     private $participatedVotes;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="won_votes", type="integer")
+     * @ORM\Column(name="won_votes", type="integer", nullable=true)
      */
     private $wonVotes;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="won_votes", type="float")
+     * @ORM\Column(name="votes_ratio", type="float", nullable=true)
      */
     private $votesRatio;
 
@@ -229,6 +229,30 @@ class Image
 
         return $this;
     }
+
+/****** ******/
+    /**
+     * Get votesRatio
+     *
+     * @return float 
+     */
+    public function getVotesRatio()
+    {
+        return $this->votesRatio;
+    }
+
+    /**
+     * Set votesRatio
+     *
+     * @param float $votesRatio
+     * @return Image
+     */
+    public function setVotesRatio($votesRatio)
+    {
+        $this->votesRatio = $votesRatio;
+
+        return $this;
+    }    
 /*****************************************/
 
 }

@@ -8,6 +8,11 @@ image_two_random:
     defaults: { _controller: "AppBundle:Image:twoRandom" }
     methods:  GET
 
+vote_submit:
+    path:     /vote/submit
+    defaults: { _controller: "AppBundle:Image:vote" }
+    methods:  POST
+
 image_index_mine:
     path:     /my
     defaults: { _controller: "AppBundle:Image:indexMine" }
