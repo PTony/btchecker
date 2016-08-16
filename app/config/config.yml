@@ -8,6 +8,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    img_directory: '%kernel.root_dir%/../web/uploads/img'
+
 
 framework:
     #esi:             ~
@@ -74,6 +76,8 @@ fos_user:
     registration:
         confirmation:
             enabled: true
+        form:
+            type: UserBundle\Form\RegistrationType
     from_email:
         address:        tony.palaquer@gmail.com
         sender_name:    BTChecker

@@ -1,3 +1,7 @@
+homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -8,3 +12,15 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+apropos:
+    path:     /a_propos
+    defaults: { _controller: AppBundle:Default:apropos }   
+
+mentions:
+    path:     /mentions
+    defaults: { _controller: AppBundle:Default:mentions }
+
+image:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /

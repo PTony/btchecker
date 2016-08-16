@@ -20,7 +20,7 @@ security:
                 # csrf_provider: form.csrf_provider
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /user/accueil
+                default_target_path: /image/
                 always_use_default_target_path: true
             logout:       true
             anonymous:    true
@@ -31,3 +31,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/profil, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/image/, role: ROLE_USER }

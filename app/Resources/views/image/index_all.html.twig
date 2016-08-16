@@ -1,0 +1,44 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}{{ "Images"|trans }}{% endblock %}
+
+
+{% block content %}
+    <h1>Toutes les images</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Uploader</th>
+                <th>Images</th>
+                <th>Upload date</th>
+                <th>Gender</th>
+                <th>Note</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            {% set delete_form = delete_forms[loop.index0] %}
+            <tr>
+                <td><a href="{{ path('image_show', { 'id': image.id }) }}">{{ image.id }}</a></td>
+                <td>{{ image.ownerId.username }}</td>
+                <td><img width="64" src="{{ asset('uploads/img/' ~ image.path) }}" alt="image_{{ loop.index }}"></td>
+                <td>{% if image.uploadedAt %}{{ image.uploadedAt|date('m/d/Y H:i:s') }}{% endif %}</td>
+                <td>{{ image.gender }}</td>
+                <td>{{ (image.votesRatio * 5)|round(1, 'floor') }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        {{ form_start(delete_form) }}
+                            <input role="button" type="submit" class="btn btn-danger" value="Supprimer">
+                        {{ form_end(delete_form) }}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

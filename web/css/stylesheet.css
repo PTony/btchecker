@@ -1,0 +1,82 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 20px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 20px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  /*padding: 60px 15px 0;*/
+}
+.container .text-muted {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+/* Page d'accueil */
+video#bgvid {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background: url(../video/polina.jpg) no-repeat;
+  background-size: cover;
+}
+
+.white-text{
+    color:white;
+}
+/* Login page */
+
+.need_account {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Vote page */
+
+.first-img .thumbnail, .second-img .thumbnail {
+  /*background: aqua;*/
+  height: 390px;
+}
+
+.first-img img, .second-img img{
+  max-height: 300px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);  
+}
+
+.versus-big-text{
+  text-align: center;
+  /*background: yellow;*/
+  font-size: 5em;
+  font-weight: 900;
+  margin-top: 30vh;
+}
