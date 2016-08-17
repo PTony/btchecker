@@ -5,7 +5,10 @@
     <h1>Image creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {# {{ form_widget(form) }} #}
+        {{ form_label(form.path, null, { 'label_attr': { 'class': 'sr-only'  } }) }}
+        {{ form_errors(form.path) }}        
+        {{ form_widget(form.path)}}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 

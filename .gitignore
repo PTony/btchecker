@@ -11,3 +11,5 @@
 /bin/
 /composer.phar
 *.sublime-*
+
+tests/_output/*
