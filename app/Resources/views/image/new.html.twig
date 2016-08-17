@@ -2,19 +2,25 @@
 {% block title %}{{ "Ajout d'une image"|trans }}{% endblock %}
 
 {% block content %}
+<div class="col-md-4 col-md-offset-4">
     <h1>Image creation</h1>
-
-    {{ form_start(form) }}
+    {# {{ form_start(form) }} #}
+{{ form_start(form, {'method': 'post', 'action': path('image_new'), 'attr': {'class': 'form_image_new'}}) }}    
         {# {{ form_widget(form) }} #}
-        {{ form_label(form.path, null, { 'label_attr': { 'class': 'sr-only'  } }) }}
+        {# {{ form_label(form.path, null, { 'label_attr': { 'class': 'sr-only'  } }) }} #}
+    <div class="form-group">
+        {{ form_label(form.path, 'Image') }}
         {{ form_errors(form.path) }}        
         {{ form_widget(form.path)}}
-        <input type="submit" value="Create" />
+    </div>
+    <div class="form-group">
+        {{ form_label(form.path, 'Genre') }}
+        {{ form_errors(form.gender) }}        
+        {{ form_widget(form.gender)}}
+    </div>
+    <div>
+        <input type="submit" role="button" class="btn btn-primary btn-block" value="Envoyer" />
+    </div>
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('image_index') }}">Back to the list</a>
-        </li>
-    </ul>
+</div>
 {% endblock %}

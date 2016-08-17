@@ -148,6 +148,9 @@ class ImageController extends Controller
             $em->persist($image);
             $em->flush();
 
+            $session = new Session();
+            $session->getFlashBag()->add('infos', 'Image téléversée !');    
+
             return $this->redirectToRoute('image_show', array('id' => $image->getId()));
         }
 

@@ -2,37 +2,16 @@
 {% block title %}{{ "Image"|trans }} #{{ image.id }}{% endblock %}
 
 {% block content %}
-    <h1>Image</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ image.id }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td><img src="{{ asset('uploads/img/' ~ image.path) }}"/></td>
-            </tr>
-            <tr>
-                <th>Uploadedat</th>
-                <td>{% if image.uploadedAt %}{{ image.uploadedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{ image.gender }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('image_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {% for message in app.session.flashbag.get('infos') %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center alert alert-success" role="alert">{{ message }}</div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 first-img">
+            <div class="thumbnail">
+                <img src="{{ asset('uploads/img/' ~ image.path) }}" alt="First image"/>
+            </div>                
+        </div>    
+    </div> 
 {% endblock %}
