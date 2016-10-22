@@ -44,13 +44,13 @@ class ImageController extends Controller
      * get 2 random images
      *
      */
-    public function twoRandomAction()
+    public function twoRandomAction(Request $request, $gender)
     {
         $em = $this->getDoctrine()->getManager();
 
         $images = $em->getRepository('AppBundle:Image');
 
-        $twoRandom = $images->myFind2Random($this->getUser()->getId());
+        $twoRandom = $images->myFind2Random($this->getUser()->getId(), $gender);
 
 
         return $this->render('image/vote.html.twig', array(

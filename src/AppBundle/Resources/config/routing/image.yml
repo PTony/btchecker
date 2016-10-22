@@ -4,7 +4,7 @@ image_index:
     methods:  GET
 
 image_two_random:
-    path:     /vote
+    path:     /vote/{gender}
     defaults: { _controller: "AppBundle:Image:twoRandom" }
     methods:  GET
 

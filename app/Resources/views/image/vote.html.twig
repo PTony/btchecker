@@ -7,6 +7,7 @@
         </div>
     {% endfor %}
     <div class="row">
+        {% if images %}
         <div class="col-md-5 col-xs-5 first-img">
             <div class="thumbnail">
                 <img src="{{ asset('uploads/img/' ~ images[0].path) }}" alt="First image"/>
@@ -31,7 +32,10 @@
                     <input type="submit" class="btn btn-primary center-block" role="button" value="Voter pour"/>
                 </form>
             </div>
-        </div>        
+        </div>
+        {% else %}
+            <div>Il n'y a pas assez d'images pour le moment</div>
+        {% endif %}       
     </div>
 
 {% endblock %}

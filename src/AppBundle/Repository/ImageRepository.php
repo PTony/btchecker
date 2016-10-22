@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImageRepository extends EntityRepository
 {
-	public function myFind2Random($user)
+	public function myFind2Random($user, $gender)
 	{	
 
 		// First we get all Images ids not uploaded by the user (normally the logged user)
@@ -20,12 +20,19 @@ class ImageRepository extends EntityRepository
 		->select('i.id')
 		->from($this->_entityName, 'i')
 		->where('i.ownerId <> :userId')
+		->andWhere('i.gender = \''.$gender.'\'')
 		->setParameter('userId', $user)
+		// ->setParameter('gender', $gender)
 		;
 		$query = $queryBuilder->getQuery();
 
     	$listIds = $query->getResult();
-
+    	dump($query);
+    	dump(count($listIds));
+    	if (count($listIds) < 2) {
+    		return false;
+    	}
+    	
     	// Then we ask two random id from theses results
         $randomKeys = array_rand($listIds, 2);
         $firstId = $listIds[$randomKeys[0]]['id'];

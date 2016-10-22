@@ -42,10 +42,10 @@ code {
 
 /* Page d'accueil */
 video#bgvid {
-  position: fixed; right: 0; bottom: 0;
+  position: fixed; right: 0; top: 0px;
   min-width: 100%; min-height: 100%;
   width: auto; height: auto; z-index: -100;
-  background: url(../video/polina.jpg) no-repeat;
+  background: url(../video/le-boule-checking.png) no-repeat;
   background-size: cover;
 }
 
